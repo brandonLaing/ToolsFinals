@@ -12,7 +12,6 @@ using UnityEngine;
 /// </summary>
 public class AutoAim : MonoBehaviour
 {
-
   public float[] shotTimes;
   public float[] platformRotations;
   public float[] barrelElevations;
@@ -25,27 +24,27 @@ public class AutoAim : MonoBehaviour
   public List<float> timeDifference = new List<float>();
 
   public GameObject wanderer = null;
-  public BarrelControl aim = null;
 
   public List<bool> hitTracker = new List<bool>();
 
-  private void Awake()
-  {
-    System.Text.StringBuilder timeSB = new System.Text.StringBuilder();
-    System.Text.StringBuilder rotationSB = new System.Text.StringBuilder();
-    System.Text.StringBuilder elevationSB = new System.Text.StringBuilder();
+  //private void Awake()
+  //{
+  //  System.Text.StringBuilder timeSB = new System.Text.StringBuilder();
+  //  System.Text.StringBuilder rotationSB = new System.Text.StringBuilder();
+  //  System.Text.StringBuilder elevationSB = new System.Text.StringBuilder();
 
-    for (int i = 0; i < 10; i++ )
-    {
-      timeSB.AppendLine(shotTimes[i].ToString());
-      rotationSB.AppendLine(platformRotations[i].ToString());
-      elevationSB.AppendLine(barrelElevations[i].ToString());
-    }
+  //  for (int i = 0; i < 10; i++ )
+  //  {
+  //    timeSB.AppendLine(shotTimes[i].ToString());
+  //    rotationSB.AppendLine(platformRotations[i].ToString());
+  //    elevationSB.AppendLine(barrelElevations[i].ToString());
+  //  }
 
-    Debug.Log(timeSB);
-    Debug.Log(rotationSB);
-    Debug.Log(elevationSB);
-  }
+  //  Debug.Log(timeSB);
+  //  Debug.Log(rotationSB);
+  //  Debug.Log(elevationSB);
+  //}
+
   void Start()
   {
     barrelControl = GetComponent<BarrelControl>();
@@ -68,7 +67,7 @@ public class AutoAim : MonoBehaviour
       barrelControl.platformRotation = platformRotations[shotIndex];
       barrelControl.barrelElevation = barrelElevations[shotIndex];
 
-      Debug.Log($"Time to hit: {aim.GetEstimatedShotLandingTime()}");
+      Debug.Log($"Time to hit: {barrelControl.GetEstimatedShotLandingTime()}");
       //if (shotIndex == 9)
       //Debug.Log(wanderer.transform.position);
 
