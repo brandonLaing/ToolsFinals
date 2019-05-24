@@ -1,0 +1,20 @@
+For the final exam, you will use what you know of the Unity Editor to provide a series of firing solutions for a mortar simulation.
+
+    Clone the Git repository at https://github.com/onecrane/game131_finalStart (Links to an external site.)Links to an external site. onto your machine.
+    Open the scene FinalExamField.
+    Run the scene. It will be hard to see what's happening, but if you look, you'll see the Cannon object in the middle of the floor occasionally fire off spherical Shell objects. Assuming the absence of shenanigans, the Shell objects should hit the blue Wanderer capsule as it moves throughout the floor. Each Shell that hits the Wanderer will produce a "Player hit!" message. Each one that misses will produce a "Miss" message.
+    Select the Cannon object. Notice that it has a Barrel Control script component. Zoom in on the Cannon object to see the effects of changing the settings. Changing Platform Rotation causes the cannon to rotate around the vertical axis; changing Barrel Elevation changes the angle of the barrel. Notice that you cannot modify the Cannon's position or orientation as normal through the Transform component; this is by design. The cannon must remain at position <0,0,0> and scale <1,1,1>.
+    Notice also that there is an Auto Aim script on the Cannon object. Currently there are ten shots programmed for it. Each shot has a time, a platform rotation, and a barrel elevation. For example, the first shot (represented by Element 0 in each list) will fire at time 1.9 (meaning 1.9 seconds after the scene loads, per Time.timeSinceLevelLoad), with a platform rotation of 5.7 and a barrel elevation of 11. The sixth shot (represented by Element 5 in each list) will fire at time 26.68 (26.68 seconds after level load), with a platform rotation of 136.45 and a barrel elevation of 7.5.
+    Select the Wanderer object. Notice that it has a Constrained Wander script component, with a Starting Seed value of 42. This specifies the seed of the random number generator used to determine its movement. By setting this number, it ensures that the wanderer will always wander the same path. That current seed value of 42 causes it to walk a path in which it will be hit by each of the ten programmed shots.
+    Your task is to change the seed value to 131, and to provide a list of ten shot configurations that will hit the Wanderer. Submit it as a text entry (e.g. "Shot 0: Time 1.2, Platform Rotation 45.1, Barrel Elevation 20" etc.)
+
+Constraints
+
+    The cannon can only fire every three seconds. If you try to fire before its cooldown, the cannon will "break." Make sure your shots are at least 4 seconds apart.
+    Do not change any of the Wanderer's properties; it must start at its original location ( <10.54, 1, -5.13> with rotation <0, 0, 0> and scale <1, 1, 1>), because that's what I'll be testing your answers with.
+
+Hints
+
+If you look in BarrelControl, you'll see that there are some utility functions there that can help you determine where a shot will land, and how long from the time it is fired it will take to get there. This will be critical in helping you determine the outcome of a shot.
+
+Keep in mind: You can always know, at any given time, where the Wanderer is. If you know the time since level load at that time, then you know when to fire a shot at that location so that the shot arrives there when the Wanderer is there.
